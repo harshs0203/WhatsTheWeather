@@ -26,8 +26,10 @@ public class MainActivity extends AppCompatActivity {
 
         Log.i("Button", cityName.getText().toString());
 
-    }
+        Weather task = new Weather();
+        task.execute("http://api.openweathermap.org/data/2.5/weather?q="+cityName.getText().toString()+"&appid=ecd9af9d7b34407890a8b4096b6b90e2");
 
+    }
 
     public class Weather extends AsyncTask<String, Void ,String> {
 
