@@ -28,7 +28,7 @@
         android:layout_below="@+id/cityName"
         android:id="@+id/resultTextView"
         android:textSize="30sp"
-        android:textColor="@android:color/background_light"
+        android:textColor="@android:color/holo_blue_dark"
         android:layout_alignStart="@+id/cityName" />
 
     <TextView
@@ -37,8 +37,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/textView"
         android:textSize="36sp"
-        android:textColor="@android:color/white"
-        android:fontFamily="@android:string/unknownName"
+        android:textColor="@android:color/holo_blue_dark"
         android:layout_alignParentTop="true"
         android:layout_alignEnd="@+id/button"
         android:layout_marginEnd="12dp"
@@ -52,8 +51,8 @@
         android:layout_marginTop="35dp"
         android:id="@+id/cityName"
         android:textSize="24sp"
-        android:textColor="@android:color/background_light"
-        android:textColorHint="@android:color/white"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textColorHint="@android:color/holo_blue_dark"
         android:hint="City Name...."
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true" />

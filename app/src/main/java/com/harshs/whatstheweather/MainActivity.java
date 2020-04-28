@@ -2,8 +2,8 @@ package com.harshs.whatstheweather;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -15,11 +15,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.io.InputStream;
+import java.lang.*;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 
@@ -32,24 +31,25 @@ public class MainActivity extends AppCompatActivity {
 
         Log.i("Button", cityName.getText().toString());
 
-        Weather task = new Weather();
+        InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        mgr.hideSoftInputFromInputMethod(cityName.getWindowToken(), 0);
+
         try {
+
+            Weather task = new Weather();
 
            String encodedURL =URLEncoder.encode(cityName.getText().toString(), "UTF-8");
 
             task.execute("http://api.openweathermap.org/data/2.5/weather?q=" + encodedURL + "&appid=ecd9af9d7b34407890a8b4096b6b90e2");
 
-            InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        }catch (Throwable e){
 
-            mgr.hideSoftInputFromInputMethod(cityName.getWindowToken(), 0);
-        }catch (Exception e){
-
-            Toast.makeText(getApplicationContext(),"Could not find the Weather",Toast.LENGTH_LONG);
+           Toast.makeText(getApplicationContext(),"Could not find the Weather",Toast.LENGTH_LONG);
 
         }
         }
 
-    public class Weather extends AsyncTask<String, Void ,String> {
+         class Weather extends AsyncTask<String, Void ,String> {
 
         @Override
         protected String doInBackground(String... urls) {
@@ -80,14 +80,13 @@ public class MainActivity extends AppCompatActivity {
                 }
                 return result;
 
-            } catch (Exception e) {
+            } catch (Throwable e) {
 
-               Toast.makeText(getApplicationContext(),"Could not find the Weather",Toast.LENGTH_LONG);
+                Toast.makeText(getApplicationContext(), "Could not find the Weather", Toast.LENGTH_LONG);
 
             }
-            return null;
+                return null;
         }
-
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
